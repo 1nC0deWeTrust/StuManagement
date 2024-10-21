@@ -1,4 +1,4 @@
-package org.example.stumanagement.controller.controller;
+package org.example.stumanagement.controller;
 
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;

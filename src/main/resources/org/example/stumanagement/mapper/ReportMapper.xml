@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.example.stumanagement.mapper.ReportMapper">
+    <select id="getStudentCountData" resultType="java.util.Map">
+        SELECT c.name clazz, count(*) total
+        FROM clazz c
+                 LEFT JOIN student s
+                           ON c.id = s.clazz_id
+        GROUP BY c.name
+    </select>
+    <!--  1:初中, 2:高中, 3:大专, 4:本科, 5:硕士, 6:博士  -->
+    <select id="getStudentDegreeData" resultType="java.util.Map">
+        SELECT (case s.degree
+                    when 1 then '初中'
+                    when 2 then '高中'
+                    when 3 then '大专'
+                    when 4 then '本科'
+                    when 5 then '硕士'
+                    when 6 then '博士'
+                    else '未知' end) name,
+               count(*)              value
+        from student s
+        group by s.degree
+    </select>
+</mapper>
